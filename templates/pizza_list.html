@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block main %}
+{% for pizza in pizza_list %}
+            <nav class="navbar navbar-default">
+                <div class="form-group">
+                    <form action="pizza{{ pizza.get_absolute_url }}order/" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="pizza_id" value="{{pizza.id}}">
+                        <p><input type="number" name="quantity" max="10" min="1" value="1" style="width:33px"></p>
+                        <button type="submit">Order</button>
+                    </form>
+                    <!--<a href="pizza{{ pizza.get_absolute_url }}order/" class="btn btn-default btn-sm edit_button">-->
+                        <!--Order</a>-->
+                    <a href="{{pizza.get_absolute_url}}" class="product_name">{{ pizza.recipe.name }} Price {{pizza.price}} </a>
+                </div>
+            </nav>
+            {% endfor %}
+{% endblock %}

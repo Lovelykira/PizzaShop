@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{%block main%}
+{% if order_list %}
+    Order details:
+    {% for order_item in order_list %}
+        {{order_item.pizza.recipe}} |
+<form action="/bin/change_quantity/" method="POST" class="form-bin">
+    {% csrf_token %}
+    <input type="hidden" name="pizza_id" value="{{order_item.pizza.pk}}">
+    <input type="number" name="quantity" max="10" min="1" value="{{order_item.quantity}}" style="width:33px">
+    <button type="submit">Change</button>
+</form>
+<br><br>
+    {% endfor %}
+<br>
+<p id="totalcost">Totalcost = {{total}}</p>
+<form action="/bin/checkout/" method="POST">
+    {% csrf_token %}
+    <button type="submit">Checkout</button>
+</form>
+{% else %}
+At this moment you have no active order
+{% endif %}
+
+{% endblock %}

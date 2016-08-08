@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block main %}
+Pizza details:<br>
+
+{{pizza.recipe}}
+<img src="{{ pizza.image }}" class="img-responsive img-thumbnail"><br>
+<img src="{{ pizza.recipe.image.url }}" style="width:500px; height:500px;">
+
+
+{% endblock %}

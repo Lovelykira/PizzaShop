@@ -1,0 +1,12 @@
+.form-group *{
+    display: inline-block;
+    float: left;
+}
+
+.form-bin *{
+display: inline-block;
+}
+
+.form-bin {
+display: inline-block;
+}

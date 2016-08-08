@@ -1,0 +1,38 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="{% static 'js/script.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>{% block title %}{% endblock %}</title>
+     {% block head %}
+    <nav class="navbar navbar-default header">
+        <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand bg-info" href="/">Pizza!</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                {% if not user.is_authenticated %}
+                <li><a href="/login/"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a href="/register/"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                {% else %}
+                <li><a href="/bin/"><span class="glyphicon glyphicon-home"></span>Bin</a></li>
+                <li><a href="/logout/"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                {% endif %}
+            </ul>
+            <div class="search"></div>
+        </div>
+    </nav>
+    {% endblock %}
+
+</head>
+<body>
+<div class="container">
+    {% block main %} {% endblock %}
+</div>
+<br>
+</body>
+</html>
