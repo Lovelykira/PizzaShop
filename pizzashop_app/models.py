@@ -60,7 +60,7 @@ class Order(models.Model):
 
 
 class OrderItemPizza(models.Model):
-    order = models.ForeignKey(Order)
+    order = models.ForeignKey(Order, related_name='order_pizzas')
     pizza = models.ForeignKey(Pizza)
     quantity = models.PositiveIntegerField()
 

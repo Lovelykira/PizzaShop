@@ -19,7 +19,7 @@ class PizzaListView(ListView):
 
 
 class LoginView(FormView):
-    template_name = 'log_in.html'
+    template_name = 'login.html'
     form_class = LoginForm
 
     def form_valid(self, form):

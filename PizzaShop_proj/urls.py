@@ -15,15 +15,19 @@ Including another URLconf
 """
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf.urls import include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import url
 from django.contrib import admin
+from django.views.generic.base import RedirectView
 from pizzashop_app.views import PizzaListView, LoginView, LogoutView, RegisterView, PizzaDetailView, BinView, \
     PizzaOrderView,BinCheckoutView, BinChangeQuantityView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^api/', include('api.urls') ),
+    url(r'^accounts/profile/$',  RedirectView.as_view(url='/', permanent=False), name='index'),
     url(r'^$', PizzaListView.as_view(), name='pizza_list'),
     url(r'^login/$', LoginView.as_view()),
     url(r'^logout/$', LogoutView.as_view()),
